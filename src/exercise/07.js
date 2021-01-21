@@ -11,6 +11,7 @@ const allItems = [
 ]
 
 function App() {
+  window.fetchStyle('https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css')
   const [items, setItems] = React.useState(allItems)
 
   function addItem() {
@@ -30,12 +31,12 @@ function App() {
         add item
       </button>
       <ul style={{listStyle: 'none', paddingLeft: 0}}>
-        {items.map(item => (
+        {items.map((item, index) => (
           // 🐨 add a key prop to the <li> below. Set it to item.id
-          <li>
-            <button onClick={() => removeItem(item)}>remove</button>{' '}
-            <label htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
-            <input id={`${item.id}-input`} defaultValue={item.value} />
+          <li key={item.id}>
+            <button className="border rounded p-2" onClick={() => removeItem(item)}>remove</button>{' '}
+            <label className="border rounded p-2" htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
+            <input className="border rounded p-2" id={`${item.id}-input`} defaultValue={item.value} />
           </li>
         ))}
       </ul>
